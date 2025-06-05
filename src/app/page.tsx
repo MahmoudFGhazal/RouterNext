@@ -1,11 +1,14 @@
 import Image from "next/image";
-import styles from "./page.module.css";
+import styles from "./styles/page.module.css";
 import {useState} from 'react';
+
+import { OwnerRepo } from "@/components/owner_repo";
 
 interface DataProps{
   id: number;
   name: string;
   full_name: string;
+  html_url: string;
   owner: {
     login: string;
     id: number;
@@ -14,9 +17,18 @@ interface DataProps{
   }
 }
 
+async function delay(delay: number){
+  await new Promise(resolve => setTimeout(resolve, delay));
+
+  const url = "https://api.github.com/users/MahmoudFGhazal/repos";
+  const response = await fetch(url);
+
+  return response.json();
+}
+
 async function getData() {
-  //https://api.github.com/users/MahmoudFGhazal/repos
-  const response = await fetch("https://api.github.com/users/MahmoudFGhazal/repos");
+  const url = "https://api.github.com/users/MahmoudFGhazal/repos";
+  const response = await fetch(url, {next: { revalidate: 120}});
 
   return response.json();
 }
@@ -32,8 +44,13 @@ export default async function Home() {
 
       <h3>Meus Repositorios</h3>
       {data.map((item) => (
-        <div key={item.id}>
-          <strong>Repositorio:</strong><a> {item.name}</a>
+        <div key={item.id} className={styles.content}>
+          <strong>Repositorio:</strong><a href={item.html_url}>{item.name}</a>
+          <br/>
+          <OwnerRepo 
+            repo={item}
+          />
+
           <br/>
         </div>
       ))}

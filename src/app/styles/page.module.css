@@ -1,0 +1,21 @@
+.content{
+    width: auto;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    margin-left: 15px;
+    align-items: center;
+}
+
+.content a {
+    text-decoration: none;
+    color: #fff;
+    margin-left: 5px;
+    transition: color 0.5s;
+    transition: transform 2s;
+}
+
+.content a:hover {
+    color: #94ddf3;
+    transform: scale(1.05);
+}

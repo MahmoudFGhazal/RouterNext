@@ -1,0 +1,29 @@
+.container{
+    display: flex;
+    align-items: center;
+}
+
+.button{
+    background: #fff;
+    color: #000;
+    border: none;
+    border-radius: 25px;
+    height: 30px;
+    width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 1s, transform 2s;
+
+    margin: 10px;
+}
+
+.button:hover {
+    background: #94ddf3;
+    transform: scale(1.05);
+}
+
+.name{
+    margin-left: 5px;
+}
